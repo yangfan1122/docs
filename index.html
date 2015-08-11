@@ -9,3 +9,13 @@ title: 我的Blog
 		<li>{{ post.date | date_to_string }} <a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a></li>
 	{% endfor %}
 </ul>
+
+<p>{{paginator.per_page}}</p>
+
+<p>
+	<a href="paginator.previous_page_path"><<</a>
+	&nbsp;&nbsp;
+	{{paginator.page}}/{{paginator.total_pages}}
+	&nbsp;&nbsp;
+	<a href="paginator.next_page_path">>></a>
+</p>
