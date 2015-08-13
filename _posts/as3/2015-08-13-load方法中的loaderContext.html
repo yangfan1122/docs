@@ -1,0 +1,43 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+</head>
+
+<body>
+
+
+
+---
+layout: default
+title: Loader.load()方法中的loaderContext参数
+---
+<h2>{{page.title}}</h2>
+<p align="left">前提条件<br>
+  A.swf, B.swf<br>
+  AB同一工程里，AB共同使用X.as，发布A；X.as添加方法x()，B使用x()，发布B。<br>
+  A加载B。</p>
+<p align="left">1：Loader.load(new URLRequest(B.swfUrl));<br>
+  load方法第二个参数context为null时，已加载的内容保存在自己的安全域中，此时A、B各自使用发布时的X.as。<br>
+  此时不会报错。</p>
+<p align="left">2：Loader.load(new URLRequest(B.swfUrl), ApplicationDomain.currentDomain);<br>
+  加载器自己的应用域（B在A的应用域）。A和B可以直接使用对方的类。A B共同使用X.as，则实际使用的是A发布时的X.as（修改前的X.as）。即&ldquo;如果子级试图定义的类与父级已定义的类同名，则使用父类并忽略子类&rdquo;。<br>
+  此时B会报错，x()不是方法。</p>
+<p align="left">3：Loader.load(new URLRequest(B.swfUrl), new ApplicationDomain(ApplicationDomain.currentDomain));<br>
+  默认值。允许B直接通过编写 new MyClassDefinedInParent() 来使用A的类。但是A则不能使用此语法；如果A要使用B的类，它必须调用  ApplicationDomain.getDefinition() 来检索它们。 <br>
+  此时B依旧会报错。</p>
+<p align="left">4：Loader.load(new URLRequest(B.swfUrl), new ApplicationDomain(null));<br>
+  系统 ApplicationDomain 的子级。这将完全分离A和B，从而允许它们使用相同的名称定义各自版本的类并且不会产生冲突或隐藏。一方查看另一方的类的唯一方式是调用 ApplicationDomain.getDefinition() 方法。<br>
+  此时不会报错。</p>
+<p>&nbsp;</p>
+<p align="left">SecurityDomain和ApplicationDomain<br>
+  ApplicationDomain 类是分散的类定义组的一个容器。应用程序域用于<strong>划分位于同一个安全域中的类</strong>。已加载的类仅在其父级中没有相关定义时才进行定义。不能用较新的定义覆盖已加载的类定义。</p>
+<p>&nbsp;</p>
+</body>
+</html>
+
+
+
+
+
