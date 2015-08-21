@@ -1,0 +1,71 @@
+---
+layout: default
+title: 较timer更为准确的倒计时方法
+---
+<h2>{{page.title}}</h2>
+<div>
+从同事处得来一较为准确的倒计时方法。<br><br>
+Timer的计时由于帧频原因或者CPU占用过高，会随着时间推移而越发不准确。<br />
+应对办法之一就是每隔一段时间(例如300ms)校正一次，进而达到接近准确的目的。
+</div>
+<p>private static var countdownTimer:Timer = new Timer(300);<br>
+  private static var timestamp:Number = 0;<br>
+  private static var countdowns:Array = [];<br>
+  private static var countdownSeconds:Object = {};</p>
+<p>public static function addCountdown(method:Function, second:Number):void<br>
+  {<br>
+  var index:int = countdowns.indexOf(method);<br>
+  if (index &gt;= 0)<br>
+  {<br>
+  return;<br>
+  }<br>
+  if (!countdownTimer.hasEventListener(TimerEvent.TIMER))<br>
+  {<br>
+  countdownTimer.addEventListener(TimerEvent.TIMER, countDownHandler);<br>
+  }<br>
+  if (!countdownTimer.running)<br>
+  {<br>
+  timestamp = getTimer();<br>
+  countdownTimer.start();<br>
+  }<br>
+  countdowns.push(method);<br>
+  countdownSeconds[method] = second;<br>
+  }</p>
+<p>public static function removeCountdown(method:Function):void<br>
+  {<br>
+  if (method == null)<br>
+  {<br>
+  return;<br>
+  }<br>
+  var index:int = countdowns.indexOf(method);<br>
+  if (index &gt;= 0)<br>
+  {<br>
+  countdowns.splice(index, 1);<br>
+  countdownSeconds[method] = null;<br>
+  delete countdownSeconds[method];<br>
+  }<br>
+  if (countdowns.length == 0)<br>
+  {<br>
+  countdownTimer.stop();<br>
+  }<br>
+  }</p>
+<p>private static function countDownHandler(e:TimerEvent):void<br>
+  {<br>
+  var remain:Number = (getTimer() - timestamp) * 0.001;<br>
+  timestamp = getTimer();<br>
+  for (var i:int = 0; i &lt; countdowns.length; i++)<br>
+  {<br>
+  var func:Function = countdowns[i];<br>
+  var second:Number = countdownSeconds[func];<br>
+  second -= remain;<br>
+  func(second);<br>
+  countdownSeconds[func] = second;<br>
+  }<br>
+  }</p>
+</body>
+</html>
+
+
+
+
+
