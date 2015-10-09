@@ -11,7 +11,7 @@ Timer的计时由于帧频原因或者CPU占用过高，会随着时间推移而
 <p>private static var countdownTimer:Timer = new Timer(300);<br>
   private static var timestamp:Number = 0;<br>
   private static var countdowns:Array = [];<br>
-  private static var countdownSeconds:Object = {};</p>
+  private static var countdownSeconds : Dictionary = new Dictionary();</p>
 <p>public static function addCountdown(method:Function, second:Number):void<br>
   {<br>
   var index:int = countdowns.indexOf(method);<br>
