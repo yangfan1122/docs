@@ -1,0 +1,82 @@
+---
+layout: default
+title: 基于store.js实现的跨浏览器持久化数据方案。
+---
+<h2>{{page.title}}</h2>
+
+<article class="markdown-body entry-content" itemprop="mainContentOfPage"><h1><a id="user-content-storejsplus" class="anchor" href="#storejsplus" aria-hidden="true"><span class="octicon octicon-link"></span></a>storejsplus</h1>
+
+<h2><a id="user-content-概况" class="anchor" href="#概况" aria-hidden="true"><span class="octicon octicon-link"></span></a>概况</h2>
+
+<p>基于<a href="https://github.com/marcuswestin/store.js">store.js</a>实现的跨浏览器持久化数据方案。</p>
+
+<h2><a id="user-content-详解" class="anchor" href="#详解" aria-hidden="true"><span class="octicon octicon-link"></span></a>详解</h2>
+
+<p>webStorage（标准浏览器 + ie 8+） + userData （ie 6/7）。
+由于最近项目场景恰好需要sessionStorage，故将store.js中默认的loaclStorage改为sessionStorage。具体方式可按需选择。</p>
+
+<h3><a id="user-content-webstorage" class="anchor" href="#webstorage" aria-hidden="true"><span class="octicon octicon-link"></span></a>webStorage</h3>
+
+<p>webStorage没什么好说，不过还是要留意下存储上限，不同浏览器间有差异，详见<a href="http://dev-test.nemikor.com/web-storage/support-test/">http://dev-test.nemikor.com/web-storage/support-test/</a>。</p>
+
+<h3><a id="user-content-userdata" class="anchor" href="#userdata" aria-hidden="true"><span class="octicon octicon-link"></span></a>userData</h3>
+
+<p>userDate的存储上限却很麻烦，<a href="https://msdn.microsoft.com/en-us/library/ms531424(v=vs.85).aspx">详见</a>。</p>
+
+<table>
+  <tbody>
+    <tr>
+      <th> Security Zone </th>
+      <th> Document Limit (KB) </th>
+      <th> Domain Limit (KB) </th>
+    </tr>
+    <tr>
+      <td> Local Machine </td>
+      <td> 128 </td>
+      <td> 1024 </td>
+    </tr>
+    <tr>
+      <td> Intranet </td>
+      <td> 512 </td>
+      <td> 10240 </td>
+    </tr>
+    <tr>
+      <td> Trusted Sites </td>
+      <td> 128 </td>
+      <td> 1024 </td>
+    </tr>
+    <tr>
+      <td> Internet </td>
+      <td> 128 </td>
+      <td> 1024 </td>
+    </tr>
+    <tr>
+      <td> Restricted </td>
+      <td> 64 </td>
+      <td> 640 </td>
+    </tr>
+  </tbody>
+</table>
+
+<p>稳妥起见，将数据分割成最小的每片64K分别存储。仅数据分片还不行，还要为每个数据分片load一个StorageName。</p>
+
+<div class="highlight highlight-source-js"><pre>storage.<span class="pl-c1">load</span>(store.userDataStorageName)</pre></div>
+
+<p>这样才会在用户本地生成相应的物理文件来存储数据。</p>
+
+<h3><a id="user-content-跨目录访问" class="anchor" href="#跨目录访问" aria-hidden="true"><span class="octicon octicon-link"></span></a>跨目录访问</h3>
+
+<p>跨目录暂时没用到，userDate可通过window.name处理，webStorage可通过Communication APIs处理，这里不再细说。</p>
+
+<h3><a id="user-content-存储耗时" class="anchor" href="#存储耗时" aria-hidden="true"><span class="octicon octicon-link"></span></a>存储耗时</h3>
+
+<p>200K测试数据，webStorage仅2ms左右，userData每片64K，200K分四片，需要2000ms。</p>
+
+<h3><a id="user-content-关于数据大小和字符长度的关系" class="anchor" href="#关于数据大小和字符长度的关系" aria-hidden="true"><span class="octicon octicon-link"></span></a>关于数据大小和字符长度的关系</h3>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-k">&lt;</span>meta charset<span class="pl-k">=</span><span class="pl-s"><span class="pl-pds">"</span>utf-8<span class="pl-pds">"</span></span><span class="pl-k">&gt;</span></pre></div>
+
+<p>页面charset为utf-8，而utf-8又是基于Unicode产生的，所以测试数据一个字母为16位、2个字节。故字符串长度×2即为数据体积。</p>
+</article>
+
+<p>{{ page.date | date_to_string }}</p>
