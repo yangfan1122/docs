@@ -1,0 +1,21 @@
+---
+layout: default
+title: How does removeEventListener work in Object Context
+---
+<h2>{{page.title}}</h2>
+
+var obj = {
+	handler: null,
+	myhandler : function () {
+		console.log('click');
+		this.target.removeEventListener('click', this.handler);
+	},
+	target : document.getElementById('BtnID'),
+	init : function () {
+		this.handler = this.myhandler.bind(this);
+		this.target.addEventListener('click', this.handler);
+	},
+};
+obj.init();
+
+<p>{{ page.date | date_to_string }}</p>
