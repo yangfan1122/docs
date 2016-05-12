@@ -4,18 +4,18 @@ title: How does removeEventListener work in Object Context
 ---
 <h2>{{page.title}}</h2>
 
-var obj = {
-	handler: null,
-	myhandler : function () {
-		console.log('click');
-		this.target.removeEventListener('click', this.handler);
-	},
-	target : document.getElementById('BtnID'),
-	init : function () {
-		this.handler = this.myhandler.bind(this);
-		this.target.addEventListener('click', this.handler);
-	},
-};
+var obj = {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;handler : null,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;myhandler : function () {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;console.log('click');<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;this.target.removeEventListener('click', this.handler);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;},<br>
+&nbsp;&nbsp;&nbsp;&nbsp;target : document.getElementById('BtnID'),<br>
+&nbsp;&nbsp;&nbsp;&nbsp;init : function () {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;this.handler = this.myhandler.bind(this);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;this.target.addEventListener('click', this.handler);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;},<br>
+};<br>
 obj.init();
 
 <p>{{ page.date | date_to_string }}</p>
