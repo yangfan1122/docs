@@ -1,0 +1,20 @@
+---
+layout: default
+title: Typescript自定义事件
+---
+<h2>{{page.title}}</h2>
+
+export class E {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;public dispatcher: Element = document.createElement(&quot;dispatcher&quot;);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;public dispatch(event: string): void {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;try {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;this.dispatcher.dispatchEvent(new Event(event));<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} catch (error) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;let evt = document.createEvent(&quot;HTMLEvents&quot;);//IE<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;evt.initEvent(event, false, true);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;this.dispatcher.dispatchEvent(evt);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+}
+
+<p>{{ page.date | date_to_string }}</p>
