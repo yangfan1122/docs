@@ -1,0 +1,16 @@
+---
+layout: default
+title: 批处理修改替换文件名
+---
+<h2>{{page.title}}</h2>
+
+@echo off<br>
+set strtemp3=文件扩展名<br>
+set strtemp1=被替换字符<br>
+set strtemp2=替换字符<br>
+setlocal enabledelayedexpansion<br>
+for /f "delims=" %%a in ('dir /a /b *.%strtemp3%') do (<br>
+set nobird=%%a<br>
+ren "%%~a" "!nobird:%strtemp1%=%strtemp2%!")<br>
+
+<p>{{ page.date | date_to_string }}</p>
