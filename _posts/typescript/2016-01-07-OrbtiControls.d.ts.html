@@ -1,0 +1,25 @@
+---
+layout: default
+title: OrbtiControls.d.ts
+---
+<h2>{{page.title}}</h2>
+
+// Type definitions for three.js (Detector.js)<br>
+// Project: https://github.com/mrdoob/three.js/blob/master/examples/js/Detector.js<br>
+// Definitions by: Satoru Kimura <https://github.com/gyohk><br>
+// Definitions: https://github.com/DefinitelyTyped/DefinitelyTyped<br>
+
+interface DetectorStatic {<br>
+    canvas: boolean;<br>
+    webgl: boolean;<br>
+    workers: boolean;<br>
+    fileapi: boolean;<br>
+<br>
+    getWebGLErrorMessage(): HTMLElement;<br>
+    addGetWebGLMessage(parameters?: {id?: string; parent?: HTMLElement}): void;<br>
+}<br>
+
+declare var Detector: DetectorStatic;<br>
+}<br>
+
+<p>{{ page.date | date_to_string }}</p>
