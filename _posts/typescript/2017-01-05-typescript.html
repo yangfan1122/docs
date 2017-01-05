@@ -1,0 +1,25 @@
+---
+layout: default
+title: typescript
+---
+<h2>{{page.title}}</h2>
+
+<h2>FileWatcher</h2>
+<p>Arguments: </p>
+<p>--sourcemap $FilePath$ --out $ProjectFileDir$/bin/VODPlayer.js --module amd --target ES5 --removeComments</p>
+<br><br>
+<h2>tsconfig.json</h2>
+<p>{<br>
+&quot;extends&quot;: &quot;tslint:latest&quot;,<br>
+&quot;rules&quot;: {<br>
+&quot;interface-name&quot;: false,<br>
+&quot;max-line-length&quot;: [true, 540],<br>
+&quot;member-ordering&quot;: [true,<br>
+&quot;public-before-private&quot;,<br>
+&quot;static-before-instance&quot;,<br>
+&quot;variables-before-functions&quot;<br>
+]<br>
+}<br>
+}</p>
+
+<p>{{ page.date | date_to_string }}</p>
