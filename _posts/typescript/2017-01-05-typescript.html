@@ -8,18 +8,9 @@ title: typescript
 <p>Arguments: </p>
 <p>--sourcemap $FilePath$ --out $ProjectFileDir$/bin/******.js --module amd --target ES5 --removeComments</p>
 <br><br>
-<h3>tsconfig.json</h3>
-<p>{<br>
-&quot;extends&quot;: &quot;tslint:latest&quot;,<br>
-&quot;rules&quot;: {<br>
-&quot;interface-name&quot;: false,<br>
-&quot;max-line-length&quot;: [true, 540],<br>
-&quot;member-ordering&quot;: [true,<br>
-&quot;public-before-private&quot;,<br>
-&quot;static-before-instance&quot;,<br>
-&quot;variables-before-functions&quot;<br>
-]<br>
-}<br>
-}</p>
+<h3>tslint.json</h3>
+<p>
+<pre>{<br>&#32;&#32;&#32;"extends"&#32;:&#32;"tslint:latest",<br>&#32;&#32;&#32;"rules"&#32;:&#32;{<br>&#32;&#32;&#32;&#32;&#32;&#32;"interface-name"&#32;:&#32;false,<br>&#32;&#32;&#32;&#32;&#32;&#32;"max-line-length"&#32;:&#32;[true,&#32;540],<br>&#32;&#32;&#32;&#32;&#32;&#32;"member-ordering"&#32;:&#32;[true,<br>&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;"public-before-private",<br>&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;"static-before-instance",<br>&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;"variables-before-functions"<br>&#32;&#32;&#32;&#32;&#32;&#32;],<br>&#32;&#32;&#32;&#32;&#32;&#32;"comment-format":&#32;[false,<br>&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;"check-space"<br>&#32;&#32;&#32;&#32;&#32;&#32;],<br>&#32;&#32;&#32;&#32;&#32;&#32;"whitespace"&#32;:&#32;[false,<br>&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;"whitespace",<br>&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;"typedef-whitespace"<br>&#32;&#32;&#32;&#32;&#32;&#32;],<br>&#32;&#32;&#32;&#32;&#32;&#32;"typedef-whitespace":&#32;[true,&#32;{<br>&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;"call-signature":&#32;"nospace",<br>&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;"index-signature":&#32;"nospace",<br>&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;"parameter":&#32;"nospace",<br>&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;"property-declaration":&#32;"nospace",<br>&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;"variable-declaration":&#32;"nospace"<br>&#32;&#32;&#32;&#32;&#32;&#32;}]<br>&#32;&#32;&#32;}<br>}<br>
+</pre>
 
 <p>{{ page.date | date_to_string }}</p>
