@@ -5,7 +5,6 @@ title: 删除保留文件夹以外的其他文件夹
 <h2>{{page.title}}</h2>
 
 @echo off<br>
-echo "删除保留文件夹以外的其他文件夹"<br>
 set re="保留文件夹"<br>
 pushd "保留文件夹目录"<br>
 for /f "delims=" %%a in ('dir /a/b^|findstr/ixvc:%re:" "=" /c:"%') do (<br>
