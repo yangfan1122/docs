@@ -1,2 +1,2 @@
 # docs
-test token 1
+test token 2
