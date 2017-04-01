@@ -9,7 +9,6 @@ set re="保留文件夹"<br>
 pushd "保留文件夹目录"<br>
 for /f "delims=" %%a in ('dir /a/b^|findstr/ixvc:%re:" "=" /c:"%') do (<br>
     if exist "%%a\" (<br>
-        echo rd /s /q "%%a\" 2>nul<br>
 		rd /s /q "%%a\"<br>
     ) else echo del /a /f "%%a" 2>nul<br>
 )<br>
