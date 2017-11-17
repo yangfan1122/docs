@@ -4649,6 +4649,8 @@ var player = new TcPlayer('id_test_video', {
 "height" : '320'//视频的显示高度，请尽量使用视频分辨率高度
 });
 
+player.volume(0);
+
 var console = document.getElementById("console");
 function log(content) {
 	console.innerHTML += content+"<br>";
