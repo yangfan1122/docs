@@ -3,6 +3,28 @@ layout: default
 title: test
 ---
 <h2>{{page.title}}</h2>
-test
+
+
+<script data-main="http://v.163.com/special/0085696M/vodplayer.js" src="http://img1.cache.netease.com/video/vod/h5/alone/require.js"></script>
+<link href="http://v.163.com/special/0085696M/vodplayercssalone.css" type="text/css" rel="stylesheet">
+<div style="width:960px; height:520px">
+<div id="vodcontainer"></div>
+<script>
+require(["vodplayer"], function(VODPlayer) {
+    VODPlayer.VODPlayer(document.getElementById("vodcontainer"), {
+        coverpic:"",
+        autoplay:"false",
+        loop:"0",
+        muted:"1",
+        control:"1",
+        vr:0,
+        focusJson:"",
+        videoSource:"http://flv4.bn.netease.com/videolib3/1711/17/deiQN4763/SD/deiQN4763-mobile.mp4"
+    });
+});
+</script>
+</div>
+
+
 <p>{{ page.date | date_to_string }}</p>
 
