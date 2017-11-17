@@ -1,0 +1,12 @@
+<script src="http://cdn-zb.leju.com/js/lejulive_v1.0.0.js"></script>
+
+
+<div id="vodcontainer"></div>
+<script>
+require(["vodplayer"], function(VODPlayer) {
+    VODPlayer.VODPlayer(document.getElementById("vodcontainer"), {
+        autoplay:false,
+        videoSource:"http://1253471571.vod2.myqcloud.com/2e3b0023vodgzp1253471571/2f6af7759031868223375386976/playlist.f9.mp4"
+    });
+});
+</script>
