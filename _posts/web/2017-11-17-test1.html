@@ -12,6 +12,10 @@
  </head>
  <body>
  <div id="id_test_video" style="width:100%; height:auto;"></div>
+ <div>
+ 	<button id="v1">100%</button>
+	<button id="v2">0%</button>
+ </div>
  <button id="btn">clear</button>
  <div id="console"></div>
  <script>
@@ -4649,7 +4653,16 @@ var player = new TcPlayer('id_test_video', {
 "height" : '320'//视频的显示高度，请尽量使用视频分辨率高度
 });
 
-player.volume(0);
+
+
+var v1 =document.getElementById("v1");
+var v2 =document.getElementById("v2");
+v1.onclick = function() {
+	player.volume(1);
+}
+v2.onclick = function() {
+	player.volume(0);	
+}
 
 var console = document.getElementById("console");
 function log(content) {
