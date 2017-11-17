@@ -1,15 +1,12 @@
-<!doctype html>
-<html>
-<head>
-<meta charset="utf-8">
-<title>∂¿¡¢vodplayer</title>
+---
+layout: default
+title: test
+---
+<h2>{{page.title}}</h2>
 <!-- part1 -->
 <script data-main="http://v.163.com/special/0085696M/vodplayer.js" src="http://img1.cache.netease.com/video/vod/h5/alone/require.js"></script>
 <link href="http://v.163.com/special/0085696M/vodplayercssalone.css" type="text/css" rel="stylesheet">
 <!-- //part1 -->
-</head>
-
-<body>
 <div style="width:960px; height:520px">
 
 <!-- part2 -->
@@ -31,6 +28,5 @@ require(["vodplayer"], function(VODPlayer) {
 <!-- //part2 -->
 
 </div>
+<p>{{ page.date | date_to_string }}</p>
 
-</body>
-</html>
