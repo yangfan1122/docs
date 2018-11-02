@@ -1,0 +1,28 @@
+---
+layout: default
+title: node中的let
+---
+<h2>{{page.title}}</h2>
+
+<div style='width:600px; margin:0 auto;'>
+
+<h2>node中的let</h2>
+
+<p>手上node.js项目用pm2管理node进程。 </p>
+
+<p>重启服务，<strong>pm2 stop app</strong>停止进程，再用<strong>pm2 start ecosystem.json</strong>启动。</p>
+
+<p>预订的6个进程并未全部开启，并且cpu占用奇高。查看pm2错误日志，里面错误如下：<br/>SyntaxError: Block-scoped declarations (let, const, function, class) not yet supported outside strict mode </p>
+
+<p>修改的代码恰好用到let关键字，至此，错误排查完毕。</p>
+
+<p>查询node.js相关信息，如下：  </p>
+
+<blockquote><p>所有的 ECMAScript 2015 (ES6) 功能将被分为三个部分 shipping，staged 和 in progress：</p><p><strong>所有 shipping</strong>：在 V8 引擎中认为是稳定的，转变成 Node.js 默认，并且 不会 需要任何运行时标记。<br/><strong>Staged</strong>：这些是将要完成的特性，并且在 V8 团队看来并不一定稳定，需要一个 --harmony 标记。<br/><strong>In progress</strong>：这些特性可以通过各自单独的 harmony 标记被激活使用。除非为了测试用途，否则绝不鼓励这样做。值得注意的是这些标记是借由 V8 引擎公开，将来或许会有潜在的变化而不会有任何免责声明或者协议。</p><h5>『shipping』 已经开启的 ES6 特性</h5><p>目前默认开启的 ES6 特性如下：</p><p>Block scoping<br/><strong>let (strict mode only)</strong><br/>const<br/>function-in-blocks (strict mode only [1])<br/>Classes (strict mode only)<br/>Collections<br/>Map<br/>WeakMap<br/>Set<br/>WeakSet<br/>Typed arrays<br/>Generators<br/>Binary and Octal literals<br/>Object literal extensions (shorthand properties and methods)<br/>Promises<br/>New String methods<br/>Symbols<br/>Template strings <br/>Arrow Functions<br/>new.target [2]<br/>Object.assign<br/>Spread operator [2]  </p></blockquote>
+
+<h2>所以，在非严格模式下的node.js中没法用let关键字</h2>
+
+
+</div>
+
+<p>{{ page.date | date_to_string }}</p>
