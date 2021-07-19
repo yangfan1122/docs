@@ -2,9 +2,120 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Searcher</title>
+  <style>
+    html, body {
+      font-size: 16px;
+      background-color: #f0f0f0;
+    }
+
+    img {
+      width: 2rem;
+      height: 2rem;
+      padding-left: 1.1rem;
+    }
+
+    ul {
+      display: flex;
+      flex-direction: row;
+      padding: 0px;
+      height: 5vh;
+    }
+
+    li {
+      list-style: none;
+    }
+
+    input {
+      width: 15rem;
+      height: 1.6rem;
+      padding: 0px;
+    }
+
+    .container {
+      height: 90vh;
+    }
+
+    .container-360 {
+      height: 50%;
+      border-bottom: 2px solid #f0f0f0;
+      background-color: #ffffff;
+    }
+
+    .container-baidu {
+      height: 50%;
+      background-color: #ffffff;
+    }
+
+  </style>
 </head>
 <body>
-<div>searcher</div>
+
+<ul>
+  <li><input type="text" placeholder="查询内容" id="input"></li>
+  <li><img src="../assets/paste72.png" id="paste"></li>
+  <li><img src="../assets/search72.png" id="search"></li>
+</ul>
+<div class="container">
+  <div class="container-360"></div>
+  <div class="container-baidu"></div>
+</div>
+
+<script>
+  const container360 = document.getElementsByClassName('container-360')[0]
+  const containerBaidu = document.getElementsByClassName('container-baidu')[0]
+  const searchInput = document.getElementById('input')
+  const pasteBtn = document.getElementById('paste')
+  const searchBtn = document.getElementById('search')
+  pasteBtn.addEventListener('click', pasteHandler)
+  searchBtn.addEventListener('click', searchHandler)
+
+  function pasteHandler (event) {
+    clean(1)
+    navigator.clipboard.readText().then(content => {
+      searchInput.value = content
+      search360(content)
+      searchBaidu(content)
+    }).catch(error => {
+      alert(error.message)
+    })
+  }
+  function searchHandler (event) {
+    clean()
+    const content = searchInput.value
+    if (content === '') {
+      alert('请输入查询内容')
+    } else {
+      search360(content)
+      searchBaidu(content)
+    }
+  }
+
+  function search360 (content) {
+    iframeHandler('https://m.so.com/s?q=' + content, container360)
+  }
+
+  function searchBaidu (content) {
+    iframeHandler('https://m.baidu.com/s?word=' + content, containerBaidu)
+  }
+
+  function iframeHandler (url, container) {
+    const frame = document.createElement('iframe')
+    frame.src = url
+    frame.width = '100%'
+    frame.height = '100%'
+    frame.frameBorder = 0
+    container.appendChild(frame)
+  }
+
+  function clean (type) {
+    if (type === 1) {
+      searchInput.value = ''
+    }
+    container360.innerHTML = ''
+    containerBaidu.innerHTML = ''
+  }
+</script>
 </body>
 </html>
