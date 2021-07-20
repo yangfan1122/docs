@@ -11,6 +11,7 @@
     html, body {
       font-size: 16px;
       background-color: #f0f0f0;
+      height: 100%;
     }
 
     img {
@@ -19,7 +20,7 @@
       padding-left: 1.1rem;
     }
 
-    ul {
+    .panel {
       display: flex;
       flex-direction: row;
       justify-content: flex-end;
@@ -27,11 +28,7 @@
       height: 2.5rem;
     }
 
-    li {
-      list-style: none;
-    }
-    li:first-child
-    {
+    .panel div:first-child {
       width: 100%;
     }
 
@@ -42,16 +39,17 @@
     }
 
     .container {
+      height: calc(100% - 4rem);
     }
 
     .container-360 {
-      height: 45%;
-      border-bottom: 10px solid #f0f0f0;
+      height: 50%;
+      border-bottom: 0.5rem solid #f0f0f0;
       background-color: #ffffff;
     }
 
     .container-baidu {
-      height: 55%;
+      height: 50%;
       background-color: #ffffff;
     }
 
@@ -59,11 +57,11 @@
 </head>
 <body>
 
-<ul>
-  <li><input type="text" placeholder="查询内容" id="input"></li>
-  <li><img src="../assets/paste72.png" id="paste"></li>
-  <li><img src="../assets/search72.png" id="search"></li>
-</ul>
+<div class="panel">
+  <div><input type="text" placeholder="查询内容" id="input"></div>
+  <div><img src="../assets/paste72.png" id="paste"></div>
+  <div><img src="../assets/search72.png" id="search"></div>
+</div>
 <div class="container">
   <div class="container-360"></div>
   <div class="container-baidu"></div>
@@ -76,12 +74,9 @@
   const searchInput = document.getElementById('input')
   const pasteBtn = document.getElementById('paste')
   const searchBtn = document.getElementById('search')
+
   pasteBtn.addEventListener('click', pasteHandler)
   searchBtn.addEventListener('click', searchHandler)
-
-  window.onload = function () {
-    container.style.height = document.body.clientWidth * 2 + 'px'
-  }
 
   function pasteHandler (event) {
     clean(1)
