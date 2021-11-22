@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>Traffic Lights</title>
+  <link rel="icon" href="./favicon.ico">
   <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
@@ -12,14 +13,21 @@
 <body>
 <div id="time" class="time">1234</div>
 <div id="container" class="container">
-  <div class="red"></div>
-  <div class="yellow"></div>
-  <div class="green"></div>
+  <div class="red">
+    <div class="light rl"></div>
+  </div>
+  <div class="yellow">
+    <div class="light yl"></div>
+  </div>
+  <div class="green">
+    <div class="light gl"></div>
+  </div>
 </div>
 <div id="btns" class="btns">
-  <div id="redbtn" class="red-btn">1</div>
-  <div id="yellowbtn" class="yellow-btn">2</div>
-  <div id="greenbtn" class="green-btn">3</div>
+  <div id="redbtn" class="red-btn"></div>
+  <div id="yellowbtn" class="yellow-btn"></div>
+  <div id="greenbtn" class="green-btn"></div>
 </div>
+<script type="text/javascript" src="script.js"></script>
 </body>
 </html>
