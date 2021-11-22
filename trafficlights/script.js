@@ -16,6 +16,10 @@ window.addEventListener('load', init)
 
 function init () {
   time = document.getElementById('time')
+  time.addEventListener('click', () => {
+    window.clearInterval(counter)
+    window.clearTimeout(timer)
+  })
 
   red = document.getElementsByClassName('rl')[0]
   yellow = document.getElementsByClassName('yl')[0]
