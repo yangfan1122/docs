@@ -22,6 +22,7 @@ html, body {
   margin-left: auto;
   margin-right: auto;
   text-align: center;
+  user-select: none;
 }
 
 .container {
