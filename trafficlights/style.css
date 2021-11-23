@@ -13,16 +13,31 @@ html, body {
 
 .time {
   background-color: dimgrey;
-  font-size: 4rem;
+  font-size: 8rem;
   color: white;
   width: 30vw;
-  height: 11vh;
+  height: 13vh;
   line-height: 11vh;
   margin-top: 1.5vw;
   margin-left: auto;
   margin-right: auto;
   text-align: center;
   user-select: none;
+}
+@media (min-aspect-ratio: 1 / 1) {
+  .time {
+    background-color: dimgrey;
+    font-size: 4rem;
+    color: white;
+    width: 30vw;
+    height: 13vh;
+    line-height: 11vh;
+    margin-top: 1.5vw;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    user-select: none;
+  }
 }
 
 .container {
@@ -32,7 +47,7 @@ html, body {
   position: absolute;
   width: 30vw;
   height: 58vh;
-  top:45%;
+  top:50%;
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 1;
@@ -52,6 +67,18 @@ html, body {
   top: 50%;
   left: 50%;
   background-color: gray;
+}
+@media (min-aspect-ratio: 1 / 1) {
+  .light {
+    width: 12vmin;
+    height: 12vmin;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    position: relative;
+    top: 50%;
+    left: 50%;
+    background-color: gray;
+  }
 }
 .rl {
   background-color: red;
